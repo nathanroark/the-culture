@@ -21,28 +21,28 @@ export default function IndexPage() {
               canvas.height = image.height
               const context = canvas.getContext("2d")
               context?.drawImage(image, 0, 0)
-              canvas.toBlob((blob) => {
+              canvas.toBlob(async (blob) => {
                 if (!blob) return
                 try {
-                await navigator.clipboard.write([
-                  new ClipboardItem({
-                    [blob.type]: blob,
-                  }),
-                ])
-                toast({
-                title: "Copied to clipboard",
-                description: "Big Pants",
-                duration: 2000,
-                })
-                } catch(e){ 
-                toast({
-                title: "Failed to copy to clipboard",
-                description: e.message,
-                duration: 2000,
-                })
+                  await navigator.clipboard.write([
+                    new ClipboardItem({
+                      [blob.type]: blob,
+                    }),
+                  ])
+                  toast({
+                    title: "Copied to clipboard",
+                    description: "Big Pants",
+                    duration: 2000,
+                  })
+                } catch (e) {
+                  const error = e as Error
+                  toast({
+                    title: "Failed to copy to clipboard",
+                    description: error.message,
+                    duration: 2000,
+                  })
                 }
               })
-              
             }
           }}
         ></NextImage>
