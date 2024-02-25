@@ -12,7 +12,7 @@ export default function IndexPage() {
           width={1000}
           height={1000}
           alt="the-culture"
-          onClick={() => {
+          onClick={async () => {
             const image = new Image()
             image.src = "/bigPants.png"
             image.onload = () => {
@@ -23,17 +23,26 @@ export default function IndexPage() {
               context?.drawImage(image, 0, 0)
               canvas.toBlob((blob) => {
                 if (!blob) return
-                navigator.clipboard.write([
+                try {
+                await navigator.clipboard.write([
                   new ClipboardItem({
                     [blob.type]: blob,
                   }),
                 ])
-              })
-              toast({
+                toast({
                 title: "Copied to clipboard",
                 description: "Big Pants",
                 duration: 2000,
+                })
+                } catch(e){ 
+                toast({
+                title: "Failed to copy to clipboard",
+                description: e.message,
+                duration: 2000,
+                })
+                }
               })
+              
             }
           }}
         ></NextImage>
