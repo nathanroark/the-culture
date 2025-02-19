@@ -15,8 +15,10 @@ export const metadata: Metadata = {
     images: [
       {
         url: ogImage,
-        width: 1200,
-        height: 630,
+        // width: 1200,
+        // height: 630,
+        height: 1000,
+        width: 600,
         alt: "The Culture the long way",
       },
     ],
