@@ -1,31 +1,8 @@
 "use client"
 import NextImage from "next/image"
 import { useToast } from "@/components/ui/use-toast"
-import { Metadata } from "next"
 
 const img = "/bigPantsLong.webp"
-const ogImage = "https://theculture.lol/bigPantsLong.webp"
-
-export const metadata: Metadata = {
-  robots: {
-    index: true,
-    follow: true,
-  },
-  openGraph: {
-    images: [
-      {
-        url: ogImage,
-        width: 1200,
-        height: 630,
-        alt: "The Culture the long way",
-      },
-    ],
-  },
-  twitter: {
-    images: [ogImage],
-  },
-}
-
 export default function IndexPage() {
   const { toast } = useToast()
 
