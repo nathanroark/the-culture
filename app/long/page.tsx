@@ -43,7 +43,7 @@ export default function IndexPage() {
       })
     }
     image.crossOrigin = "anonymous"
-    image.src = "/bigPants.png"
+    image.src = img
   }
 
   return (
